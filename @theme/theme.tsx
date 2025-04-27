@@ -1,3 +1,5 @@
+export const themeStorageKey = "theme";
+
 export const lightTheme = {
   colors: {
     text: "#212121",
@@ -12,6 +14,9 @@ export const darkTheme: typeof lightTheme = {
   },
 };
 
-export type ThemeName = "light" | "dark";
+export enum ThemeMode {
+  LIGHT = "light",
+  DARK = "dark",
+}
 
 export type Theme = typeof lightTheme;

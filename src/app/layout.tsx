@@ -1,5 +1,6 @@
 import StyledComponentsRegistry from "@/lib/styled-components-registry";
 import { StyledComponentProvider } from "@/providers/StyledComponentProvider";
+import { ToggleModeProvider } from "@/providers/ToggleModeProvider";
 import { GlobalStyle } from "@/styles/GlobalStyles";
 
 type RootLayoutProps = {
@@ -10,12 +11,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html>
       <body>
-        <StyledComponentsRegistry>
-          <StyledComponentProvider>
-            <GlobalStyle />
-            {children}
-          </StyledComponentProvider>
-        </StyledComponentsRegistry>
+        <ToggleModeProvider>
+          <StyledComponentsRegistry>
+            <StyledComponentProvider>
+              <GlobalStyle />
+              {children}
+            </StyledComponentProvider>
+          </StyledComponentsRegistry>
+        </ToggleModeProvider>
       </body>
     </html>
   );

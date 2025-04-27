@@ -1,8 +1,9 @@
 "use client";
 
 import { ThemeProvider } from "styled-components";
-import { useEffect, useState, ReactNode } from "react";
-import { lightTheme, darkTheme, ThemeName } from "@theme/theme";
+import { ReactNode } from "react";
+import { lightTheme, darkTheme, ThemeMode } from "@theme/theme";
+import { useToggleMode } from "@/hooks/useToggleMode";
 
 type StyledComponentProviderProps = {
   children: ReactNode;
@@ -11,27 +12,10 @@ type StyledComponentProviderProps = {
 export const StyledComponentProvider = ({
   children,
 }: StyledComponentProviderProps) => {
-  const [mode, setMode] = useState<ThemeName>("light");
-
-  useEffect(() => {
-    const saved = window.localStorage.getItem("theme") as ThemeName | null;
-    if (saved) setMode(saved);
-    else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setMode("dark");
-    }
-  }, []);
-
-  const toggle = () => {
-    setMode((prev) => {
-      const next = prev === "light" ? "dark" : "light";
-      window.localStorage.setItem("theme", next);
-      return next;
-    });
-  };
+  const { mode } = useToggleMode();
 
   return (
-    <ThemeProvider theme={mode === "light" ? lightTheme : darkTheme}>
-      <button onClick={toggle}>{mode === "light" ? "🌙" : "☀️"}</button>
+    <ThemeProvider theme={mode === ThemeMode.LIGHT ? lightTheme : darkTheme}>
       {children}
     </ThemeProvider>
   );
