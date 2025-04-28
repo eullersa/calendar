@@ -1,4 +1,4 @@
-export const themeStorageKey = "theme";
+export const THEME_STORAGE_KEY = "theme";
 
 const lightTheme = {
   colors: {
@@ -34,10 +34,6 @@ export const getTheme = (mode: ThemeMode) => {
 
 export const initializeMode = () => {
   if (typeof window !== "undefined") {
-    const storedTheme = localStorage.getItem(themeStorageKey);
-
-    if (storedTheme) return undefined;
-
     const preferredMode = window.matchMedia(
       `(prefers-color-scheme: ${ThemeMode.DARK})`
     ).matches;

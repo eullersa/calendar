@@ -1,10 +1,11 @@
 import StyledComponentsRegistry from "@/lib/styled-components-registry";
 import { StyledComponentProvider } from "@/providers/StyledComponentProvider";
 import { GlobalStyle } from "@/styles/GlobalStyles";
-import { InitializeMode } from "@/providers/InitializeMode";
+import { InitializeModeProvider } from "@/providers/InitializeModeProvider";
 import { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { getTheme } from "@/server/theme";
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -17,17 +18,20 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: RootLayoutProps) {
   const locale = await getLocale();
+  const defaultMode = await getTheme();
 
   return (
     <html lang={locale}>
       <body>
         <StyledComponentsRegistry>
-          <StyledComponentProvider>
-            <GlobalStyle />
-            <NextIntlClientProvider>
-              <InitializeMode>{children}</InitializeMode>
-            </NextIntlClientProvider>
-          </StyledComponentProvider>
+          <NextIntlClientProvider>
+            <InitializeModeProvider defaultMode={defaultMode}>
+              <StyledComponentProvider>
+                <GlobalStyle />
+                {children}
+              </StyledComponentProvider>
+            </InitializeModeProvider>
+          </NextIntlClientProvider>
         </StyledComponentsRegistry>
       </body>
     </html>

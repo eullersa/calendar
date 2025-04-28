@@ -2,8 +2,8 @@
 
 import { ThemeProvider } from "styled-components";
 import { ReactNode } from "react";
-import { useModeStore } from "@/store/useModeStore";
 import { getTheme } from "@theme/theme";
+import { useCurrentMode } from "@/hooks/useCurrentMode";
 
 type StyledComponentProviderProps = {
   children: ReactNode;
@@ -12,7 +12,7 @@ type StyledComponentProviderProps = {
 export const StyledComponentProvider = ({
   children,
 }: StyledComponentProviderProps) => {
-  const { mode } = useModeStore();
+  const mode = useCurrentMode();
 
   return <ThemeProvider theme={getTheme(mode)}>{children}</ThemeProvider>;
 };
