@@ -12,7 +12,7 @@ type StyledComponentProviderProps = {
 export const StyledComponentProvider = ({
   children,
 }: StyledComponentProviderProps) => {
-  const mode = useCurrentMode();
+  const { mode } = useCurrentMode();
 
   return <ThemeProvider theme={getTheme(mode)}>{children}</ThemeProvider>;
 };
