@@ -2,8 +2,8 @@
 
 import { ThemeProvider } from "styled-components";
 import { ReactNode } from "react";
-import { lightTheme, darkTheme, ThemeMode } from "@theme/theme";
-import { useToggleMode } from "@/hooks/useToggleMode";
+import { useModeStore } from "@/store/useModeStore";
+import { getTheme } from "@theme/theme";
 
 type StyledComponentProviderProps = {
   children: ReactNode;
@@ -12,11 +12,7 @@ type StyledComponentProviderProps = {
 export const StyledComponentProvider = ({
   children,
 }: StyledComponentProviderProps) => {
-  const { mode } = useToggleMode();
+  const { mode } = useModeStore();
 
-  return (
-    <ThemeProvider theme={mode === ThemeMode.LIGHT ? lightTheme : darkTheme}>
-      {children}
-    </ThemeProvider>
-  );
+  return <ThemeProvider theme={getTheme(mode)}>{children}</ThemeProvider>;
 };
