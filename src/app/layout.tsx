@@ -3,6 +3,8 @@ import { StyledComponentProvider } from "@/providers/StyledComponentProvider";
 import { GlobalStyle } from "@/styles/GlobalStyles";
 import { InitializeMode } from "@/providers/InitializeMode";
 import { Metadata } from "next";
+import { getLocale } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -13,14 +15,18 @@ export const metadata: Metadata = {
   description: "A simple calendar app",
 };
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
+  const locale = await getLocale();
+
   return (
-    <html>
+    <html lang={locale}>
       <body>
         <StyledComponentsRegistry>
           <StyledComponentProvider>
             <GlobalStyle />
-            <InitializeMode>{children}</InitializeMode>
+            <NextIntlClientProvider>
+              <InitializeMode>{children}</InitializeMode>
+            </NextIntlClientProvider>
           </StyledComponentProvider>
         </StyledComponentsRegistry>
       </body>

@@ -1,3 +1,6 @@
+import { useTranslations } from "next-intl";
+
 export default function Home() {
-  return <div>Hello World</div>;
+  const t = useTranslations("Calendar");
+  return <div>{t("title")}</div>;
 }
