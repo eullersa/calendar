@@ -5,7 +5,7 @@ import { InitializeModeProvider } from "@/providers/InitializeModeProvider";
 import { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import { getTheme } from "@/server/theme";
+import { getTheme } from "@/services/theme";
 
 type RootLayoutProps = {
   children: React.ReactNode;

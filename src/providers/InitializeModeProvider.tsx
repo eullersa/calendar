@@ -1,10 +1,10 @@
 "use client";
 
-import { ThemeMode } from "@theme/theme";
-import { createContext, useEffect } from "react";
-import { useInitializeMode } from "@/hooks/useInitializeMode";
+import { initializeMode, ThemeMode } from "@theme/theme";
+import { createContext, useEffect, useTransition } from "react";
 import { SwitchLocaleLanguage } from "@/components/SwitchLocaleLanguage";
 import { SwitchThemeMode } from "@/components/SwitchThemeMode";
+import { setTheme } from "@/services/theme";
 
 export const InitializeModeContext = createContext<{
   mode: ThemeMode;
@@ -25,8 +25,24 @@ export const InitializeModeProvider = ({
   children,
   defaultMode,
 }: InitializeModeProps) => {
-  const { mode, getInitialMode, toggleMode, isPending } =
-    useInitializeMode(defaultMode);
+  const [isPending, startTransition] = useTransition();
+
+  const mode = defaultMode ?? ThemeMode.LIGHT;
+
+  const toggleMode = () => {
+    startTransition(() => {
+      setTheme(
+        defaultMode === ThemeMode.LIGHT ? ThemeMode.DARK : ThemeMode.LIGHT
+      );
+    });
+  };
+
+  const getInitialMode = async () => {
+    if (defaultMode) return;
+    const mode = initializeMode();
+    if (!mode) return;
+    setTheme(mode);
+  };
 
   useEffect(() => {
     getInitialMode();
