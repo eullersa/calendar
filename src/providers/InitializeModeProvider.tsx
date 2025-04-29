@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useEffect, useTransition } from "react";
-import { SwitchLocaleLanguage } from "@/components/SwitchLocaleLanguage";
-import { SwitchThemeMode } from "@/components/SwitchThemeMode";
+import { SwitchLocaleLanguage } from "@/components/atoms/SwitchLocaleLanguage/SwitchLocaleLanguage";
+import { SwitchThemeMode } from "@/components/atoms/SwitchThemeMode/SwitchThemeMode";
 import { initializeMode, ThemeMode } from "@/theme";
 import { setUserTheme } from "@/services/theme";
 
