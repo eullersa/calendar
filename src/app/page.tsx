@@ -1,5 +1,5 @@
-import { SwitchLocaleLanguage } from "@/features/i18n/components/SwitchLocaleLanguage/SwitchLocaleLanguage";
-import { SwitchThemeMode } from "@/features/theme/components/SwitchThemeMode/SwitchThemeMode";
+import { SwitchLocaleLanguage } from "@/features/i18n";
+import { SwitchThemeMode } from "@/features/theme";
 import { useTranslations } from "next-intl";
 
 export default function Home() {

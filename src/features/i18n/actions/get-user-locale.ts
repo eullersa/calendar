@@ -1,6 +1,6 @@
 "use server";
 
-import { DEFAULT_LOCALE, LOCALE_COOKIE_KEY } from "@/features/i18n/config";
+import { DEFAULT_LOCALE, LOCALE_COOKIE_KEY } from "@/features/i18n";
 import { cookies } from "next/headers";
 
 export async function getUserLocale() {

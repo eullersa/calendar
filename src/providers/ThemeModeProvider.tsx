@@ -2,7 +2,7 @@
 
 import { createContext, useEffect, useTransition } from "react";
 import { initializeMode, ThemeMode } from "@/theme";
-import { setUserTheme } from "@/features/theme/actions/set-user-theme";
+import { setUserTheme } from "@/features/theme";
 
 export const ThemeModeContext = createContext<{
   mode: ThemeMode;

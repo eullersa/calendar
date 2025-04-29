@@ -1,6 +1,6 @@
 "use client";
 
-import { useUpdateLocale } from "@/features/i18n/hooks/useUpdateLocale";
+import { useUpdateLocale } from "@/features/i18n";
 
 export const SwitchLocaleLanguage = () => {
   const { isPending, locale, updateLocale } = useUpdateLocale();

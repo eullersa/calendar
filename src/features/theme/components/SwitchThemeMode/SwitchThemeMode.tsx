@@ -1,6 +1,6 @@
 "use client";
 
-import { useThemeMode } from "@/features/theme/hooks/useThemeMode";
+import { useThemeMode } from "@/features/theme";
 import { ThemeMode } from "@/theme";
 
 export const SwitchThemeMode = () => {

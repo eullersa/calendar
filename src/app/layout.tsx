@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeModeProvider } from "@/providers/ThemeModeProvider";
-import { getUserTheme } from "@/features/theme/actions/get-user-theme";
+import { getUserTheme } from "@/features/theme";
 
 type RootLayoutProps = {
   children: React.ReactNode;
