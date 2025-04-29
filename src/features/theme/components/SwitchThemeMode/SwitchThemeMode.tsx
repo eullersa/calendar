@@ -1,8 +1,10 @@
-import { useCurrentMode } from "@/hooks/useCurrentMode";
+"use client";
+
+import { useThemeMode } from "@/features/theme/hooks/useThemeMode";
 import { ThemeMode } from "@/theme";
 
 export const SwitchThemeMode = () => {
-  const { isPending, mode, toggleMode } = useCurrentMode();
+  const { isPending, mode, toggleMode } = useThemeMode();
 
   return (
     <button onClick={toggleMode} disabled={isPending}>

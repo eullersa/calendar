@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from "styled-components";
 import { ReactNode } from "react";
-import { useCurrentMode } from "@/hooks/useCurrentMode";
+import { useThemeMode } from "@/features/theme/hooks/useThemeMode";
 import { getTheme } from "@/theme";
 
 type StyledComponentProviderProps = {
@@ -12,7 +12,7 @@ type StyledComponentProviderProps = {
 export const StyledComponentProvider = ({
   children,
 }: StyledComponentProviderProps) => {
-  const { mode } = useCurrentMode();
+  const { mode } = useThemeMode();
 
   return <ThemeProvider theme={getTheme(mode)}>{children}</ThemeProvider>;
 };

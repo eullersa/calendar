@@ -1,7 +1,7 @@
 "use client";
 
-import { Locale } from "@/i18n/config";
-import { setUserLocale } from "@/services/locale";
+import { setUserLocale } from "@/features/i18n/actions/set-user-locale";
+import { Locale } from "@/features/i18n/config";
 import { useLocale } from "next-intl";
 import { useTransition } from "react";
 

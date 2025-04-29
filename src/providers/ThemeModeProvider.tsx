@@ -1,12 +1,10 @@
 "use client";
 
 import { createContext, useEffect, useTransition } from "react";
-import { SwitchLocaleLanguage } from "@/components/atoms/SwitchLocaleLanguage/SwitchLocaleLanguage";
-import { SwitchThemeMode } from "@/components/atoms/SwitchThemeMode/SwitchThemeMode";
 import { initializeMode, ThemeMode } from "@/theme";
-import { setUserTheme } from "@/services/theme";
+import { setUserTheme } from "@/features/theme/actions/set-user-theme";
 
-export const InitializeModeContext = createContext<{
+export const ThemeModeContext = createContext<{
   mode: ThemeMode;
   toggleMode: () => void;
   isPending: boolean;
@@ -16,15 +14,15 @@ export const InitializeModeContext = createContext<{
   isPending: false,
 });
 
-type InitializeModeProps = {
+type ThemeModeProps = {
   defaultMode?: ThemeMode;
   children: React.ReactNode;
 };
 
-export const InitializeModeProvider = ({
+export const ThemeModeProvider = ({
   children,
   defaultMode,
-}: InitializeModeProps) => {
+}: ThemeModeProps) => {
   const [isPending, startTransition] = useTransition();
 
   const mode = defaultMode ?? ThemeMode.LIGHT;
@@ -49,10 +47,8 @@ export const InitializeModeProvider = ({
   }, []);
 
   return (
-    <InitializeModeContext.Provider value={{ mode, toggleMode, isPending }}>
-      <SwitchThemeMode />
-      <SwitchLocaleLanguage />
+    <ThemeModeContext.Provider value={{ mode, toggleMode, isPending }}>
       {children}
-    </InitializeModeContext.Provider>
+    </ThemeModeContext.Provider>
   );
 };
