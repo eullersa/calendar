@@ -1,25 +1,5 @@
-export const THEME_STORAGE_KEY = "theme";
-
-const lightTheme = {
-  colors: {
-    text: "#212121",
-    background: "#f7f7f8",
-  },
-};
-
-const darkTheme: typeof lightTheme = {
-  colors: {
-    text: "#ffffff",
-    background: "#141519",
-  },
-};
-
-export enum ThemeMode {
-  LIGHT = "light",
-  DARK = "dark",
-}
-
-export type Theme = typeof lightTheme;
+import { darkTheme, lightTheme } from "@/theme/palette";
+import { ThemeMode } from "@/theme/types";
 
 export const getTheme = (mode: ThemeMode) => {
   switch (mode) {

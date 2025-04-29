@@ -5,7 +5,7 @@ import { InitializeModeProvider } from "@/providers/InitializeModeProvider";
 import { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
-import { getTheme } from "@/services/theme";
+import { getUserTheme } from "@/services/theme";
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: RootLayoutProps) {
   const locale = await getLocale();
-  const defaultMode = await getTheme();
+  const defaultMode = await getUserTheme();
 
   return (
     <html lang={locale}>

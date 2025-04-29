@@ -1,5 +1,5 @@
 import { useCurrentMode } from "@/hooks/useCurrentMode";
-import { ThemeMode } from "@theme/theme";
+import { ThemeMode } from "@/theme";
 
 export const SwitchThemeMode = () => {
   const { isPending, mode, toggleMode } = useCurrentMode();

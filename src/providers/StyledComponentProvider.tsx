@@ -2,8 +2,8 @@
 
 import { ThemeProvider } from "styled-components";
 import { ReactNode } from "react";
-import { getTheme } from "@theme/theme";
 import { useCurrentMode } from "@/hooks/useCurrentMode";
+import { getTheme } from "@/theme";
 
 type StyledComponentProviderProps = {
   children: ReactNode;

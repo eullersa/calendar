@@ -1,10 +1,10 @@
 "use client";
 
-import { initializeMode, ThemeMode } from "@theme/theme";
 import { createContext, useEffect, useTransition } from "react";
 import { SwitchLocaleLanguage } from "@/components/SwitchLocaleLanguage";
 import { SwitchThemeMode } from "@/components/SwitchThemeMode";
-import { setTheme } from "@/services/theme";
+import { initializeMode, ThemeMode } from "@/theme";
+import { setUserTheme } from "@/services/theme";
 
 export const InitializeModeContext = createContext<{
   mode: ThemeMode;
@@ -31,7 +31,7 @@ export const InitializeModeProvider = ({
 
   const toggleMode = () => {
     startTransition(() => {
-      setTheme(
+      setUserTheme(
         defaultMode === ThemeMode.LIGHT ? ThemeMode.DARK : ThemeMode.LIGHT
       );
     });
@@ -41,7 +41,7 @@ export const InitializeModeProvider = ({
     if (defaultMode) return;
     const mode = initializeMode();
     if (!mode) return;
-    setTheme(mode);
+    setUserTheme(mode);
   };
 
   useEffect(() => {
