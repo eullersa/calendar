@@ -5,13 +5,11 @@ import { ReactNode } from "react";
 import { useThemeMode } from "@/features/theme";
 import { getTheme } from "@/theme";
 
-type StyledComponentProviderProps = {
+type StyledThemeProviderProps = {
   children: ReactNode;
 };
 
-export const StyledComponentProvider = ({
-  children,
-}: StyledComponentProviderProps) => {
+export const StyledThemeProvider = ({ children }: StyledThemeProviderProps) => {
   const { mode } = useThemeMode();
 
   return <ThemeProvider theme={getTheme(mode)}>{children}</ThemeProvider>;

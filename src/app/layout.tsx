@@ -1,11 +1,11 @@
-import StyledComponentsRegistry from "@/lib/styled-components-registry";
-import { StyledComponentProvider } from "@/providers/StyledComponentProvider";
-import { GlobalStyle } from "@/styles/GlobalStyles";
-import { Metadata } from "next";
-import { getLocale } from "next-intl/server";
-import { NextIntlClientProvider } from "next-intl";
+import { StyledComponentsRegistry } from "@/lib/styled-components";
+import { StyledThemeProvider } from "@/providers/StyledThemeProvider";
 import { ThemeModeProvider } from "@/providers/ThemeModeProvider";
+import { GlobalStyle } from "@/styles/GlobalStyles";
+import { NextIntlClientProvider } from "next-intl";
 import { getUserTheme } from "@/features/theme";
+import { getLocale } from "next-intl/server";
+import { Metadata } from "next";
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -26,10 +26,10 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         <StyledComponentsRegistry>
           <NextIntlClientProvider>
             <ThemeModeProvider defaultMode={defaultMode}>
-              <StyledComponentProvider>
+              <StyledThemeProvider>
                 <GlobalStyle />
                 {children}
-              </StyledComponentProvider>
+              </StyledThemeProvider>
             </ThemeModeProvider>
           </NextIntlClientProvider>
         </StyledComponentsRegistry>
