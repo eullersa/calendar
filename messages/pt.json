@@ -1,5 +1,6 @@
 {
   "Calendar": {
-    "title": "Olá Mundo!"
+    "title": "Agenda",
+    "description": "Agendar nova aula"
   }
 }

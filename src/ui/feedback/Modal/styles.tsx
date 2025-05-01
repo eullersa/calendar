@@ -62,7 +62,7 @@ export const StyledModalTitle = styled(Flex)`
 `;
 
 export const StyledModalButton = styled(Flex)`
-  transition: all 0.15s ease-in-out;
+  transition: all 0.18s ease-in;
   width: 30px;
   height: 30px;
   border-radius: 5px;

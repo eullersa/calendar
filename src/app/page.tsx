@@ -13,8 +13,12 @@ export default function Home() {
   const t = useTranslations("Calendar");
   return (
     <div>
-      <Modal title="Agendar" isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        Agendar no Calendário
+      <Modal
+        title={t("title")}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      >
+        {t("description")}
       </Modal>
       <div>
         <SwitchThemeMode />
