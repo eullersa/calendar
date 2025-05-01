@@ -2,7 +2,7 @@
 
 import { SwitchLocaleLanguage } from "@/features/i18n";
 import { SwitchThemeMode } from "@/features/theme";
-import { Modal } from "@/ui/feedback/Modal/Modal";
+import { Modal } from "@/ui/feedback/Modal";
 import { Flex } from "@/ui/primitives/Flex/Flex";
 import { TimeSlot } from "@/ui/primitives/TimeSlot";
 import { useTranslations } from "next-intl";
