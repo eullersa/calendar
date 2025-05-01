@@ -11,7 +11,7 @@ import {
 import { MODAL_ANIMATION_DURATION, MODAL_ROOT_ID } from "./constants";
 import { Flex } from "@/ui/primitives/Flex/Flex";
 import { IoCloseSharp } from "react-icons/io5";
-import { useCloseDelayed } from "@/hooks/useCloseDelayed";
+import { useDelayedClose } from "@/hooks/useDelayedClose";
 
 export type ModalProps = {
   isOpen: boolean;
@@ -21,14 +21,14 @@ export type ModalProps = {
 };
 
 export const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
-  const { isClosing, isOpenDelayed } = useCloseDelayed(
+  const { isClosing, isVisible } = useDelayedClose(
     isOpen,
     MODAL_ANIMATION_DURATION
   );
 
-  if (!isOpenDelayed) return null;
+  if (!isVisible) return null;
 
-  if (isOpenDelayed) {
+  if (isVisible) {
     const modalRoot = document.getElementById(MODAL_ROOT_ID);
     if (!modalRoot) {
       const newModalRoot = document.createElement("div");
