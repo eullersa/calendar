@@ -4,14 +4,13 @@ import {
   StyledModalContent,
   StyledModalMask,
   StyledModal,
-  StyledModalContentHeader,
-  StyledModalButton,
   StyledModalTitle,
+  StyledModalContentHeader,
 } from "./styles";
 import { MODAL_ANIMATION_DURATION, MODAL_ROOT_ID } from "./constants";
 import { Flex } from "@/ui/primitives/Flex/Flex";
-import { IoCloseSharp } from "react-icons/io5";
 import { useDelayedClose } from "@/hooks/useDelayedClose";
+import { CloseButton } from "./CloseButton";
 
 export type ModalProps = {
   isOpen: boolean;
@@ -49,18 +48,10 @@ export const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
         >
           <Flex $vertical $gap={10}>
             <StyledModalContentHeader $justify="flex-end">
-              <StyledModalButton
-                onClick={onClose}
-                $align="center"
-                $justify="center"
-              >
-                <IoCloseSharp size={22} />
-              </StyledModalButton>
+              <CloseButton onClick={onClose} />
             </StyledModalContentHeader>
-            <Flex $vertical $gap={10}>
-              <StyledModalTitle>{title}</StyledModalTitle>
-              {children}
-            </Flex>
+            <StyledModalTitle>{title}</StyledModalTitle>
+            {children}
           </Flex>
         </StyledModalContent>
       </StyledModalCentered>
