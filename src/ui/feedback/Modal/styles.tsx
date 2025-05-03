@@ -40,7 +40,7 @@ export const StyledModalContent = styled.div`
   position: relative;
   z-index: 1002;
   background: ${({ theme }) => theme.modal.colors.background};
-  border-radius: ${({ theme }) => theme.modal.size.borderRadius};
+  border-radius: ${({ theme }) => theme.theme.borderRadius};
   padding: 40px;
   margin: auto;
   max-width: 500px;

@@ -8,6 +8,6 @@ export const StyledTimeSlot = styled.div`
   background-color: ${({ theme }) => theme.calendar.background};
   border: 1px solid ${({ theme }) => theme.calendar.border};
   &:hover {
-    background-color: ${({ theme }) => theme.calendar.hoverBackground};
+    background-color: ${({ theme }) => theme.calendar.hover};
   }
 `;

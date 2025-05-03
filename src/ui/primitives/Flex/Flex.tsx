@@ -9,6 +9,7 @@ type FlexProps = {
   $vertical?: boolean;
   $flex?: string;
   $gap?: number;
+  $fullWidth?: boolean;
 };
 
 export const Flex = styled.div<FlexProps>`
@@ -19,4 +20,5 @@ export const Flex = styled.div<FlexProps>`
   flex-direction: ${({ $vertical }) => ($vertical ? "column" : "row")};
   gap: ${({ $gap }) => ($gap ? `${$gap}px` : "0")};
   flex: ${({ $flex }) => $flex || "none"};
+  width: ${({ $fullWidth }) => ($fullWidth ? "100%" : "auto")};
 `;
