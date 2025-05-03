@@ -1,5 +1,4 @@
-import { darkTheme, lightTheme } from "@/theme/palette";
-import { ThemeMode } from "@/theme/types";
+import { darkTheme, lightTheme, ThemeMode } from "@/theme";
 
 export const getTheme = (mode: ThemeMode) => {
   switch (mode) {
@@ -12,13 +11,13 @@ export const getTheme = (mode: ThemeMode) => {
   }
 };
 
-export const initializeMode = () => {
+export const detectSystemThemeMode = () => {
   if (typeof window !== "undefined") {
-    const preferredMode = window.matchMedia(
+    const isDarkMode = window.matchMedia(
       `(prefers-color-scheme: ${ThemeMode.DARK})`
     ).matches;
 
-    return preferredMode ? ThemeMode.DARK : ThemeMode.LIGHT;
+    return isDarkMode ? ThemeMode.DARK : ThemeMode.LIGHT;
   }
 
   return ThemeMode.LIGHT;

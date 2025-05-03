@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { StyledInput } from "./styles";
-import { InputIcon } from "./InputIcon";
 import { InputWrapper } from "../InputWrapper";
+import { InputIcon } from "../InputIcon";
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   icon?: React.ReactNode;

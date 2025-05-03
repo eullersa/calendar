@@ -1,7 +1,7 @@
 import { StyledComponentsRegistry } from "@/lib/styled-components";
 import { StyledThemeProvider } from "@/providers/StyledThemeProvider";
 import { ThemeModeProvider } from "@/providers/ThemeModeProvider";
-import { GlobalStyle } from "@/styles/GlobalStyles";
+import { GlobalStyle } from "@/styles/global";
 import { NextIntlClientProvider } from "next-intl";
 import { getUserTheme } from "@/features/theme";
 import { getLocale } from "next-intl/server";

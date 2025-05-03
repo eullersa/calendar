@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useEffect, useTransition } from "react";
-import { initializeMode, ThemeMode } from "@/theme";
+import { detectSystemThemeMode, ThemeMode } from "@/theme";
 import { setUserTheme } from "@/features/theme";
 
 export const ThemeModeContext = createContext<{
@@ -37,7 +37,7 @@ export const ThemeModeProvider = ({
 
   const getInitialMode = async () => {
     if (defaultMode) return;
-    const mode = initializeMode();
+    const mode = detectSystemThemeMode();
     if (!mode) return;
     setUserTheme(mode);
   };

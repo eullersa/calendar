@@ -1,7 +1,7 @@
 import { Flex } from "@/ui/primitives/Flex/Flex";
 import { Input, InputProps } from "../Input/Input";
 import { useId } from "react";
-import { StyledErrorMessage } from "./styles";
+import { StyledErrorMessage, StyledLabel } from "./styles";
 
 type InputWithLabelProps = InputProps & {
   label: string;
@@ -18,7 +18,7 @@ export const InputWithLabel = ({
 
   return (
     <Flex $vertical $fullWidth $gap={5}>
-      <label htmlFor={inputId}>{label}</label>
+      <StyledLabel htmlFor={inputId}>{label}</StyledLabel>
       <Input id={inputId} {...rest} isError={!!error} />
       {error && <StyledErrorMessage>{error}</StyledErrorMessage>}
     </Flex>

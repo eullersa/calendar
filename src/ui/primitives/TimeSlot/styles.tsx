@@ -1,3 +1,4 @@
+import { getCssVar } from "@/theme";
 import styled from "styled-components";
 
 export const StyledTimeSlot = styled.div`
@@ -5,9 +6,9 @@ export const StyledTimeSlot = styled.div`
   width: 150px;
   height: 150px;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.calendar.background};
-  border: 1px solid ${({ theme }) => theme.calendar.border};
-  &:hover {
-    background-color: ${({ theme }) => theme.calendar.hover};
+  background-color: ${getCssVar("colors.neutral.50")};
+  border: 1px solid ${getCssVar("colors.neutral.300")};
+  * &:hover {
+    background-color: ${getCssVar("colors.neutral.100")};
   }
 `;

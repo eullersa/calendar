@@ -5,7 +5,6 @@ import {
   StyledModalMask,
   StyledModal,
   StyledModalTitle,
-  StyledModalContentHeader,
 } from "./styles";
 import { MODAL_ANIMATION_DURATION, MODAL_ROOT_ID } from "./constants";
 import { Flex } from "@/ui/primitives/Flex/Flex";
@@ -47,9 +46,7 @@ export const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
           }}
         >
           <Flex $vertical $gap={10}>
-            <StyledModalContentHeader $justify="flex-end">
-              <CloseButton onClick={onClose} />
-            </StyledModalContentHeader>
+            <CloseButton onClick={onClose} />
             <StyledModalTitle>{title}</StyledModalTitle>
             {children}
           </Flex>
