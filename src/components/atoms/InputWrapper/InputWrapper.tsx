@@ -1,8 +1,8 @@
-import { StyledInputWrapper } from "./styles";
 import React from "react";
+import { StyledInputWrapper } from "@/components/atoms/InputWrapper";
 
 export type InputWrapperProps = {
-  inputRef?: React.RefObject<HTMLInputElement | null>;
+  onClick?: () => void;
   isError?: boolean;
   isFocused?: boolean;
   children: React.ReactNode;
@@ -10,14 +10,14 @@ export type InputWrapperProps = {
 };
 
 export const InputWrapper = ({
-  children,
+  onClick,
   isError,
   isFocused,
-  inputRef,
+  children,
   iconPosition = "left",
 }: InputWrapperProps) => (
   <StyledInputWrapper
-    onClick={() => inputRef?.current?.focus()}
+    onClick={onClick}
     $align="center"
     $justify="center"
     $position={iconPosition}

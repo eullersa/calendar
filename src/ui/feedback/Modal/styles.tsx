@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { MODAL_ANIMATION_DURATION } from "./constants";
 import { Flex } from "@/ui/primitives/Flex/Flex";
 import { fadeIn, fadeOut } from "./animations";
-import { getCssVar } from "@/theme";
+import { componentsCSS, getCssVar } from "@/theme";
 
 type StyledModalAnimationProps = {
   $isClosing?: boolean;
@@ -16,12 +16,23 @@ export const StyledModal = styled.div`
   align-items: center;
 `;
 
+export const StyledModalContent = styled.div`
+  position: relative;
+  z-index: 1002;
+  background: ${componentsCSS("Modal.background")};
+  border-radius: ${componentsCSS("Modal.borderRadius")};
+  padding: ${getCssVar("primitive.space.10")};
+  margin: auto;
+  max-width: 500px;
+  width: 100%;
+`;
+
 export const StyledModalMask = styled.div<StyledModalAnimationProps>`
   z-index: 1000;
   position: fixed;
   inset: 0;
   height: 100%;
-  background: ${getCssVar("colors.opacity.500")};
+  background: ${getCssVar("primitive.colors.opacity.500")};
   animation: ${({ $isClosing }) => ($isClosing ? fadeOut() : fadeIn())}
     ${MODAL_ANIMATION_DURATION}ms ease-in-out forwards;
 `;
@@ -37,21 +48,10 @@ export const StyledModalCentered = styled.div<StyledModalAnimationProps>`
     ${MODAL_ANIMATION_DURATION}ms ease-in-out forwards;
 `;
 
-export const StyledModalContent = styled.div`
-  position: relative;
-  z-index: 1002;
-  background: ${getCssVar("colors.neutral.100")};
-  border-radius: ${getCssVar("radii.lg")};
-  padding: ${getCssVar("space.10")};
-  margin: auto;
-  max-width: 500px;
-  width: 100%;
-`;
-
 export const StyledModalTitle = styled(Flex)`
-  line-height: ${getCssVar("typography.lineHeight.none")};
-  font-weight: ${getCssVar("typography.fontWeight.bold")};
-  font-size: ${getCssVar("typography.fontSize.3xl")};
+  line-height: ${getCssVar("primitive.typography.lineHeight.none")};
+  font-weight: ${getCssVar("primitive.typography.fontWeight.bold")};
+  font-size: ${getCssVar("primitive.typography.fontSize.3xl")};
 `;
 
 export const StyledModalButton = styled(Flex)`
@@ -61,9 +61,9 @@ export const StyledModalButton = styled(Flex)`
   transition: all 0.18s ease-in;
   width: 30px;
   height: 30px;
-  border-radius: ${getCssVar("radii.md")};
+  border-radius: ${getCssVar("primitive.radii.md")};
   cursor: pointer;
   &:hover {
-    background: ${getCssVar("colors.semantic.action.hover")};
+    background: ${componentsCSS("Modal.buttonHover")};
   }
 `;

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
-import { StyledInput } from "./styles";
-import { InputWrapper } from "../InputWrapper";
-import { InputIcon } from "../InputIcon";
+import { StyledInput } from "@/components/molecules/Input";
+import { InputWrapper } from "@/components/atoms/InputWrapper";
+import { InputIcon } from "@/components/atoms/InputIcon";
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   icon?: React.ReactNode;
@@ -20,12 +20,16 @@ export const Input = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const isActive = !!rest.value || isFocused;
 
+  const handleFocus = () => {
+    inputRef.current?.focus();
+  };
+
   return (
     <InputWrapper
       iconPosition={iconPosition}
       isFocused={isFocused}
       isError={isError}
-      inputRef={inputRef}
+      onClick={handleFocus}
     >
       <InputIcon isActive={isActive} icon={icon} />
       <StyledInput

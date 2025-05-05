@@ -1,5 +1,5 @@
 import { IoCloseSharp } from "react-icons/io5";
-import { StyledModalButton } from "./styles";
+import { StyledModalButton } from "@/ui/feedback/Modal";
 
 type CloseButtonProps = {
   onClick: () => void;

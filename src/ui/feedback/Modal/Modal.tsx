@@ -5,11 +5,11 @@ import {
   StyledModalMask,
   StyledModal,
   StyledModalTitle,
-} from "./styles";
+} from "@/ui/feedback/Modal";
 import { MODAL_ANIMATION_DURATION, MODAL_ROOT_ID } from "./constants";
 import { Flex } from "@/ui/primitives/Flex/Flex";
 import { useDelayedClose } from "@/hooks/useDelayedClose";
-import { CloseButton } from "./CloseButton";
+import { CloseButton } from "@/ui/feedback/Modal";
 
 export type ModalProps = {
   isOpen: boolean;

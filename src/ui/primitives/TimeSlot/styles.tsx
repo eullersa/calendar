@@ -1,4 +1,4 @@
-import { getCssVar } from "@/theme";
+import { componentsCSS } from "@/theme";
 import styled from "styled-components";
 
 export const StyledTimeSlot = styled.div`
@@ -6,9 +6,9 @@ export const StyledTimeSlot = styled.div`
   width: 150px;
   height: 150px;
   cursor: pointer;
-  background-color: ${getCssVar("colors.neutral.50")};
-  border: 1px solid ${getCssVar("colors.neutral.300")};
+  background-color: ${componentsCSS("SlotTime.background")};
+  border: 1px solid ${componentsCSS("SlotTime.borderColor")};
   * &:hover {
-    background-color: ${getCssVar("colors.neutral.100")};
+    background-color: ${componentsCSS("SlotTime.backgroundHovered")};
   }
 `;

@@ -1,3 +1,4 @@
+import { componentsCSS } from "@/theme";
 import { IconContext } from "react-icons";
 
 type InputIconProps = {
@@ -12,8 +13,10 @@ export const InputIcon = ({ icon, isActive = false }: InputIconProps) => {
     <IconContext.Provider
       value={{
         size: "25px",
+        color: isActive
+          ? componentsCSS("Input.iconColorHovered")
+          : componentsCSS("Input.iconColor"),
         style: {
-          opacity: isActive ? 1 : 0.65,
           transition: "inherit",
         },
       }}

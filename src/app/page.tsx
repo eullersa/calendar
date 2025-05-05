@@ -1,6 +1,6 @@
 "use client";
 
-import { InputWithLabel } from "@/components/molecules/InputWithLabel";
+import { TextField } from "@/components/molecules/TextField";
 import { SwitchLocaleLanguage } from "@/features/i18n";
 import { SwitchThemeMode } from "@/features/theme";
 import { Modal } from "@/ui/feedback/Modal";
@@ -21,7 +21,7 @@ export default function Home() {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
       >
-        <InputWithLabel
+        <TextField
           label="Escolha o aluno"
           value={value}
           onChange={(e) => setValue(e.target.value)}

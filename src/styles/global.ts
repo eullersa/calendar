@@ -1,7 +1,12 @@
 "use client";
 
 import { createGlobalStyle } from "styled-components";
-import { createCssVars, getCssVar } from "@/theme";
+import {
+  createCssVars,
+  fontFamilyCSS,
+  fontWeightCSS,
+  semanticCSS,
+} from "@/theme";
 
 export const GlobalStyle = createGlobalStyle`
   :root {
@@ -11,15 +16,15 @@ export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
-    background-color: ${getCssVar("colors.neutral.0")};
+    background-color: ${semanticCSS("background")};
+    color: ${semanticCSS("textColor")};
     font-size: 100%;
   }
 
   * {
     box-sizing: border-box;
     font-optical-sizing: auto;
-    color: ${getCssVar("colors.neutral.800")};
-    font-family: ${getCssVar("typography.fontFamily.body")};
-    font-weight: ${getCssVar("typography.fontWeight.regular")};
+    font-family: ${fontFamilyCSS("body")};
+    font-weight: ${fontWeightCSS("regular")};
   }
 `;

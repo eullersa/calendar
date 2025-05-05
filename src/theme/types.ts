@@ -1,8 +1,8 @@
-import { darkTheme, lightTheme, MergeDeep } from "@/theme";
+import { theme } from "@/theme";
 
 export enum ThemeMode {
   LIGHT = "light",
   DARK = "dark",
 }
 
-export type Theme = MergeDeep<typeof lightTheme, typeof darkTheme>;
+export type AppTheme = ReturnType<typeof theme<ThemeMode>>;
