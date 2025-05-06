@@ -20,6 +20,7 @@ export const primitive = {
         900: "#171717",
       },
       opacity: {
+        transparent: "rgba(0, 0, 0, 0)",
         100: "rgba(0, 0, 0, 0.1)",
         200: "rgba(0, 0, 0, 0.2)",
         300: "rgba(0, 0, 0, 0.3)",

@@ -6,9 +6,9 @@ export const StyledTimeSlot = styled.div`
   width: 150px;
   height: 150px;
   cursor: pointer;
-  background-color: ${componentsCSS("SlotTime.background")};
-  border: 1px solid ${componentsCSS("SlotTime.borderColor")};
-  * &:hover {
-    background-color: ${componentsCSS("SlotTime.backgroundHovered")};
+  background-color: ${componentsCSS("SlotTime.color.background.default")};
+  border: 1px solid ${componentsCSS("SlotTime.color.borderColor.default")};
+  &:hover {
+    background-color: ${componentsCSS("SlotTime.color.background.hovered")};
   }
 `;

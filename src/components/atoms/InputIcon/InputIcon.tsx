@@ -14,8 +14,8 @@ export const InputIcon = ({ icon, isActive = false }: InputIconProps) => {
       value={{
         size: "25px",
         color: isActive
-          ? componentsCSS("Input.iconColorHovered")
-          : componentsCSS("Input.iconColor"),
+          ? componentsCSS("Input.color.icon.focus")
+          : componentsCSS("Input.color.icon.disabled"),
         style: {
           transition: "inherit",
         },

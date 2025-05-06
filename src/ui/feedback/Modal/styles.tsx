@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { MODAL_ANIMATION_DURATION } from "./constants";
+import { MODAL_ANIMATION_DURATION, fadeIn, fadeOut } from "@/ui/feedback/Modal";
 import { Flex } from "@/ui/primitives/Flex/Flex";
-import { fadeIn, fadeOut } from "./animations";
-import { componentsCSS, getCssVar } from "@/theme";
+import { componentsCSS } from "@/theme";
 
 type StyledModalAnimationProps = {
   $isClosing?: boolean;
@@ -17,11 +16,11 @@ export const StyledModal = styled.div`
 `;
 
 export const StyledModalContent = styled.div`
+  background: ${componentsCSS("Modal.background.default")};
+  border-radius: ${componentsCSS("Modal.radii")};
+  padding: ${componentsCSS("Modal.padding")};
   position: relative;
   z-index: 1002;
-  background: ${componentsCSS("Modal.background")};
-  border-radius: ${componentsCSS("Modal.borderRadius")};
-  padding: ${getCssVar("primitive.space.10")};
   margin: auto;
   max-width: 500px;
   width: 100%;
@@ -32,7 +31,7 @@ export const StyledModalMask = styled.div<StyledModalAnimationProps>`
   position: fixed;
   inset: 0;
   height: 100%;
-  background: ${getCssVar("primitive.colors.opacity.500")};
+  background: ${componentsCSS("Modal.background.backdrop")};
   animation: ${({ $isClosing }) => ($isClosing ? fadeOut() : fadeIn())}
     ${MODAL_ANIMATION_DURATION}ms ease-in-out forwards;
 `;
@@ -49,9 +48,9 @@ export const StyledModalCentered = styled.div<StyledModalAnimationProps>`
 `;
 
 export const StyledModalTitle = styled(Flex)`
-  line-height: ${getCssVar("primitive.typography.lineHeight.none")};
-  font-weight: ${getCssVar("primitive.typography.fontWeight.bold")};
-  font-size: ${getCssVar("primitive.typography.fontSize.3xl")};
+  line-height: ${componentsCSS("Modal.title.lineHeight")};
+  font-weight: ${componentsCSS("Modal.title.fontWeight")};
+  font-size: ${componentsCSS("Modal.title.fontSize")};
 `;
 
 export const StyledModalButton = styled(Flex)`
@@ -61,9 +60,9 @@ export const StyledModalButton = styled(Flex)`
   transition: all 0.18s ease-in;
   width: 30px;
   height: 30px;
-  border-radius: ${getCssVar("primitive.radii.md")};
+  border-radius: ${componentsCSS("ModalButton.radii")};
   cursor: pointer;
   &:hover {
-    background: ${componentsCSS("Modal.buttonHover")};
+    background: ${componentsCSS("ModalButton.background.hovered")};
   }
 `;

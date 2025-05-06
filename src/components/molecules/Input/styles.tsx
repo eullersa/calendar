@@ -13,4 +13,12 @@ export const StyledInput = styled.input`
     color: ${neutralCSS("500")};
     font-weight: ${fontWeightCSS("regular")};
   }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    // remove autofill background color
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
 `;

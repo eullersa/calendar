@@ -1,4 +1,4 @@
-import { componentsCSS, getCssVar, semanticCSS } from "@/theme";
+import { componentsCSS } from "@/theme";
 import { Flex } from "@/ui/primitives/Flex/Flex";
 import styled from "styled-components";
 
@@ -10,13 +10,12 @@ type StyledInputWrapperProps = {
 
 export const StyledInputWrapper = styled(Flex)<StyledInputWrapperProps>`
   transition: all 0.15s ease-in-out;
-  border-radius: ${semanticCSS("cornerCard")};
-  border: 2px solid
-    ${({ $isFocused }) =>
-      $isFocused
-        ? componentsCSS("Input.borderColorHovered")
-        : componentsCSS("Input.borderColor")};
-  padding: ${getCssVar("primitive.space.2")};
+  border-radius: ${componentsCSS("Input.border.radius.default")};
+  border: ${({ $isFocused }) =>
+    $isFocused
+      ? componentsCSS("Input.color.border.focus")
+      : componentsCSS("Input.color.border.default")};
+  padding: ${componentsCSS("Input.padding.default")};
   height: 50px;
   width: 100%;
   cursor: pointer;

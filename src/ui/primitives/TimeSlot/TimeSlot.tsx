@@ -1,6 +1,6 @@
 "use client";
 
-import { StyledTimeSlot } from "./styles";
+import { StyledTimeSlot } from "@/ui/primitives/TimeSlot";
 
 type TimeSlotProps = React.ComponentPropsWithoutRef<"div">;
 
