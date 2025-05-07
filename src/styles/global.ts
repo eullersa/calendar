@@ -1,14 +1,14 @@
 "use client";
 
-import { createGlobalStyle } from "styled-components";
 import {
   createCssVars,
   fontFamilyCSS,
   fontWeightCSS,
   semanticCSS,
 } from "@/theme";
+import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   :root {
     ${({ theme }) => createCssVars(theme)}
   }

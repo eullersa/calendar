@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { MODAL_ANIMATION_DURATION, fadeIn, fadeOut } from "@/ui/feedback/Modal";
+import { fadeIn, fadeOut } from "@/ui/feedback/Modal";
+import { MODAL_ANIMATION_DURATION } from "./constants";
 import { Flex } from "@/ui/primitives/Flex/Flex";
 import { componentsCSS } from "@/theme";
 

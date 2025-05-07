@@ -5,7 +5,7 @@ import {
   fontWeightCSS,
   fontSizeCSS,
   lineHeightCSS,
-} from "@/theme";
+} from "../alias";
 
 export const components = {
   components: {

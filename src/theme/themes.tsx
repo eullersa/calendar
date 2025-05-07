@@ -6,4 +6,4 @@ export const theme = <T extends ThemeMode>(mode: T) =>
     ...primitive,
     ...semantic(mode),
     ...components,
-  }) as const;
+  } as const);
