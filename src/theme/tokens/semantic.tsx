@@ -1,4 +1,4 @@
-import { ThemeMode, neutralCSS, opacityCSS, radiiCSS } from "@/theme";
+import { ThemeMode, neutralCSS, opacityCSS, radiiCSS, redCSS } from "@/theme";
 
 // Source: https://cloudscape.design/foundation/visual-foundation/design-tokens/
 
@@ -54,6 +54,7 @@ export const semantic = <T extends ThemeMode>(mode: T) =>
               mode === ThemeMode.LIGHT ? neutralCSS("700") : neutralCSS("0"),
             disabled:
               mode === ThemeMode.LIGHT ? neutralCSS("500") : neutralCSS("400"),
+            error: mode === ThemeMode.LIGHT ? redCSS("500") : redCSS("400"),
           },
           surface: {
             default:
@@ -69,13 +70,18 @@ export const semantic = <T extends ThemeMode>(mode: T) =>
           input: {
             default: `2px solid ${mode === ThemeMode.LIGHT ? neutralCSS("250") : neutralCSS("600")}`,
             hovered: `2px solid ${mode === ThemeMode.LIGHT ? neutralCSS("700") : neutralCSS("150")}`,
-            // disabled: "color",
+            error: `2px solid ${mode === ThemeMode.LIGHT ? redCSS("500") : redCSS("400")}`,
           },
         },
         text: {
           page: {
             default:
               mode === ThemeMode.LIGHT ? neutralCSS("750") : neutralCSS("0"),
+          },
+          input: {
+            default:
+              mode === ThemeMode.LIGHT ? neutralCSS("900") : neutralCSS("0"),
+            error: mode === ThemeMode.LIGHT ? redCSS("500") : redCSS("400"),
           },
         },
       },

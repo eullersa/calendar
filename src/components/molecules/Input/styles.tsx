@@ -1,10 +1,10 @@
-import { fontSizeCSS, fontWeightCSS, neutralCSS, semanticCSS } from "@/theme";
+import { componentsCSS, fontSizeCSS, fontWeightCSS, neutralCSS } from "@/theme";
 import styled from "styled-components";
 
 export const StyledInput = styled.input`
   font-size: ${fontSizeCSS("lg")};
   font-weight: ${fontWeightCSS("medium")};
-  color: ${semanticCSS("textColor")};
+  color: ${componentsCSS("Input.color.text.default")};
   background-color: transparent;
   width: 100%;
   outline: none;

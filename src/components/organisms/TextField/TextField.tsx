@@ -4,7 +4,7 @@ import { Input, InputProps } from "@/components/molecules/Input";
 import {
   StyledErrorMessage,
   StyledLabel,
-} from "@/components/molecules/TextField";
+} from "@/components/organisms/TextField";
 
 type TextFieldProps = Omit<InputProps, "type"> & {
   label?: string;
@@ -19,7 +19,7 @@ export const TextField = ({ label, error, ...rest }: TextFieldProps) => {
     <Flex $vertical $fullWidth $gap={5}>
       {!!label && <StyledLabel htmlFor={inputId}>{label}</StyledLabel>}
       <Input type="text" id={inputId} {...rest} isError={!!error} />
-      {error && <StyledErrorMessage>{error}</StyledErrorMessage>}
+      {!!error && <StyledErrorMessage>{error}</StyledErrorMessage>}
     </Flex>
   );
 };

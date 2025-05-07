@@ -21,3 +21,4 @@ export * from "@/theme/alias/opacityCSS";
 export * from "@/theme/alias/borderRadiusCSS";
 export * from "@/theme/alias/componentsCSS";
 export * from "@/theme/alias/lineHeightCSS";
+export * from "@/theme/alias/redCSS";

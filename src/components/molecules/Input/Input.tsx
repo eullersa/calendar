@@ -31,7 +31,7 @@ export const Input = ({
       isError={isError}
       onClick={handleFocus}
     >
-      <InputIcon isActive={isActive} icon={icon} />
+      <InputIcon isActive={isActive} icon={icon} isError={isError} />
       <StyledInput
         {...rest}
         ref={inputRef}

@@ -1,6 +1,6 @@
 "use client";
 
-import { TextField } from "@/components/molecules/TextField";
+import { TextField } from "@/components";
 import { SwitchLocaleLanguage } from "@/features/i18n";
 import { SwitchThemeMode } from "@/features/theme";
 import { Modal } from "@/ui/feedback/Modal";
@@ -27,6 +27,7 @@ export default function Home() {
           onChange={(e) => setValue(e.target.value)}
           icon={<HiUser />}
           placeholder="Digite o nome do aluno"
+          error={value.trim().length < 3 ? "Nome muito curto" : undefined}
         />
       </Modal>
       <div>

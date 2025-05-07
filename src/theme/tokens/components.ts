@@ -33,10 +33,16 @@ export const components = {
         border: {
           default: colorCSS("border.input.default"),
           focus: colorCSS("border.input.hovered"),
+          error: colorCSS("border.input.error"),
         },
         icon: {
           focus: colorCSS("background.icon.default"),
           disabled: colorCSS("background.icon.disabled"),
+          error: colorCSS("background.icon.error"),
+        },
+        text: {
+          default: colorCSS("text.input.default"),
+          error: colorCSS("text.input.error"),
         },
       },
       border: {
