@@ -5,6 +5,7 @@ export type InputWrapperProps = {
   onClick?: () => void;
   isError?: boolean;
   isFocused?: boolean;
+  isDisabled?: boolean;
   children: React.ReactNode;
   iconPosition?: "left" | "right";
 };
@@ -13,6 +14,7 @@ export const InputWrapper = ({
   onClick,
   isError,
   isFocused,
+  isDisabled,
   children,
   iconPosition = "left",
 }: InputWrapperProps) => (
@@ -23,6 +25,7 @@ export const InputWrapper = ({
     $position={iconPosition}
     $isFocused={isFocused}
     $isError={isError}
+    $isDisabled={isDisabled}
     $gap={6}
   >
     {children}

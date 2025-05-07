@@ -6,6 +6,7 @@ type StyledInputWrapperProps = {
   $isFocused?: boolean;
   $position?: "left" | "right";
   $isError?: boolean;
+  $isDisabled?: boolean;
 };
 
 export const StyledInputWrapper = styled(Flex)<StyledInputWrapperProps>`
@@ -19,7 +20,7 @@ export const StyledInputWrapper = styled(Flex)<StyledInputWrapperProps>`
         : componentsCSS("Input.color.border.default")};
   padding: ${componentsCSS("Input.padding.default")};
   width: 100%;
-  cursor: pointer;
+  cursor: ${({ $isDisabled }) => ($isDisabled ? "not-allowed" : "auto")};
   flex-direction: ${({ $position }) =>
     $position === "right" ? "row-reverse" : "row"};
 `;

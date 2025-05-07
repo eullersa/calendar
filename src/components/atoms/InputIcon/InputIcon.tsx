@@ -5,12 +5,14 @@ type InputIconProps = {
   icon?: React.ReactNode;
   isActive?: boolean;
   isError?: boolean;
+  isDisabled?: boolean;
 };
 
 export const InputIcon = ({
   icon,
   isError,
   isActive = false,
+  isDisabled,
 }: InputIconProps) => {
   if (!icon) return null;
 
@@ -20,9 +22,11 @@ export const InputIcon = ({
         size: "25px",
         color: isError
           ? componentsCSS("Input.color.icon.error")
-          : isActive
-            ? componentsCSS("Input.color.icon.focus")
-            : componentsCSS("Input.color.icon.disabled"),
+          : isDisabled
+            ? componentsCSS("Input.color.icon.disabled")
+            : isActive
+              ? componentsCSS("Input.color.icon.focus")
+              : componentsCSS("Input.color.icon.disabled"),
         style: {
           transition: "inherit",
         },

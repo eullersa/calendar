@@ -1,16 +1,24 @@
-import { componentsCSS, fontSizeCSS, fontWeightCSS, neutralCSS } from "@/theme";
+import { componentsCSS, fontSizeCSS, fontWeightCSS } from "@/theme";
 import styled from "styled-components";
 
-export const StyledInput = styled.input`
+type StyledInputProps = {
+  $isDisabled?: boolean;
+};
+
+export const StyledInput = styled.input<StyledInputProps>`
   font-size: ${fontSizeCSS("lg")};
   font-weight: ${fontWeightCSS("medium")};
-  color: ${componentsCSS("Input.color.text.default")};
+  color: ${({ $isDisabled }) =>
+    $isDisabled
+      ? componentsCSS("Input.color.text.disabled")
+      : componentsCSS("Input.color.text.default")};
   background-color: transparent;
   width: 100%;
   outline: none;
   border: none;
+  cursor: ${({ $isDisabled }) => ($isDisabled ? "not-allowed" : "text")};
   &::placeholder {
-    color: ${neutralCSS("500")};
+    color: ${componentsCSS("Input.color.text.disabled")};
     font-weight: ${fontWeightCSS("regular")};
   }
 

@@ -27,7 +27,6 @@ export default function Home() {
           onChange={(e) => setValue(e.target.value)}
           icon={<HiUser />}
           placeholder="Digite o nome do aluno"
-          error={value.trim().length < 3 ? "Nome muito curto" : undefined}
         />
       </Modal>
       <div>

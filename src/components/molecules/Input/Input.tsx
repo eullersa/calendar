@@ -21,6 +21,7 @@ export const Input = ({
   const isActive = !!rest.value || isFocused;
 
   const handleFocus = () => {
+    if (rest.disabled) return;
     inputRef.current?.focus();
   };
 
@@ -29,12 +30,19 @@ export const Input = ({
       iconPosition={iconPosition}
       isFocused={isFocused}
       isError={isError}
+      isDisabled={rest.disabled}
       onClick={handleFocus}
     >
-      <InputIcon isActive={isActive} icon={icon} isError={isError} />
+      <InputIcon
+        isActive={isActive}
+        icon={icon}
+        isError={isError}
+        isDisabled={rest.disabled}
+      />
       <StyledInput
         {...rest}
         ref={inputRef}
+        $isDisabled={rest.disabled}
         placeholder={placeholder}
         onFocus={() => {
           setIsFocused(true);

@@ -43,6 +43,7 @@ export const components = {
         text: {
           default: colorCSS("text.input.default"),
           error: colorCSS("text.input.error"),
+          disabled: colorCSS("text.input.disabled"),
         },
       },
       border: {

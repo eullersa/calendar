@@ -82,6 +82,7 @@ export const semantic = <T extends ThemeMode>(mode: T) =>
             default:
               mode === ThemeMode.LIGHT ? neutralCSS("900") : neutralCSS("0"),
             error: mode === ThemeMode.LIGHT ? redCSS("500") : redCSS("400"),
+            disabled: neutralCSS("500"),
           },
         },
       },
