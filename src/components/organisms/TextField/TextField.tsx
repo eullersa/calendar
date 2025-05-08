@@ -9,6 +9,7 @@ import {
 type TextFieldProps = Omit<InputProps, "type"> & {
   label?: string;
   error?: string;
+  type?: "text" | "password" | "email";
 };
 
 export const TextField = ({ label, error, ...rest }: TextFieldProps) => {
@@ -18,7 +19,7 @@ export const TextField = ({ label, error, ...rest }: TextFieldProps) => {
   return (
     <Flex $vertical $fullWidth $gap={5}>
       {!!label && <StyledLabel htmlFor={inputId}>{label}</StyledLabel>}
-      <Input type="text" id={inputId} {...rest} isError={!!error} />
+      <Input id={inputId} {...rest} isError={!!error} />
       {!!error && <StyledErrorMessage>{error}</StyledErrorMessage>}
     </Flex>
   );

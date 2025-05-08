@@ -7,6 +7,7 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   icon?: React.ReactNode;
   iconPosition?: "left" | "right";
   isError?: boolean;
+  onClickIcon?: () => void;
 };
 
 export const Input = ({
@@ -14,6 +15,7 @@ export const Input = ({
   icon,
   iconPosition = "left",
   isError,
+  onClickIcon,
   ...rest
 }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -38,6 +40,7 @@ export const Input = ({
         icon={icon}
         isError={isError}
         isDisabled={rest.disabled}
+        onClickIcon={onClickIcon}
       />
       <StyledInput
         {...rest}
