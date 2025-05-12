@@ -1,10 +1,8 @@
 import { useId } from "react";
 import { Flex } from "@/ui/primitives/Flex/Flex";
 import { Input, InputProps } from "@/components/molecules/Input";
-import {
-  StyledErrorMessage,
-  StyledLabel,
-} from "@/components/organisms/TextField";
+import { StyledErrorMessage } from "@/components/organisms/TextField";
+import { Label } from "@/components/atoms/Label";
 
 type TextFieldProps = Omit<InputProps, "type"> & {
   label?: string;
@@ -18,7 +16,7 @@ export const TextField = ({ label, error, ...rest }: TextFieldProps) => {
 
   return (
     <Flex $vertical $fullWidth $gap={5}>
-      {!!label && <StyledLabel htmlFor={inputId}>{label}</StyledLabel>}
+      {!!label && <Label htmlFor={inputId}>{label}</Label>}
       <Input id={inputId} {...rest} isError={!!error} />
       {!!error && <StyledErrorMessage>{error}</StyledErrorMessage>}
     </Flex>

@@ -8,7 +8,7 @@ import { Flex } from "@/ui/primitives/Flex/Flex";
 import { TimeSlot } from "@/ui/primitives/TimeSlot";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { HiUser } from "react-icons/hi";
+import { PiUserDuotone } from "react-icons/pi";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function Home() {
           label="Escolha o aluno"
           value={value}
           onChange={(e) => setValue(e.target.value)}
-          icon={<HiUser />}
+          icon={<PiUserDuotone />}
           placeholder="Digite o nome do aluno"
         />
       </Modal>

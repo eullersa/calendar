@@ -6,7 +6,3 @@ export const StyledErrorMessage = styled.span`
   font-weight: ${getCssVar("primitive.typography.fontWeight.medium")};
   color: ${componentsCSS("Input.color.text.error")};
 `;
-
-export const StyledLabel = styled.label`
-  font-size: ${getCssVar("primitive.typography.fontSize.lg")};
-`;
