@@ -20,6 +20,7 @@ export const StyledInput = styled.input<StyledInputProps>`
   &::placeholder {
     color: ${componentsCSS("Input.color.text.disabled")};
     font-weight: ${fontWeightCSS("regular")};
+    font-size: ${fontSizeCSS("lg")};
   }
 
   &:-webkit-autofill,

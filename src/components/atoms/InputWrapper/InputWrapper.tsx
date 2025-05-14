@@ -8,6 +8,9 @@ export type InputWrapperProps = {
   isDisabled?: boolean;
   children: React.ReactNode;
   iconPosition?: "left" | "right";
+  cursor?: "text" | "pointer" | "not-allowed" | "default";
+  ref?: React.Ref<HTMLDivElement>;
+  className?: string;
 };
 
 export const InputWrapper = ({
@@ -17,6 +20,9 @@ export const InputWrapper = ({
   isDisabled,
   children,
   iconPosition = "left",
+  cursor = "default",
+  ref,
+  className,
 }: InputWrapperProps) => (
   <StyledInputWrapper
     onClick={onClick}
@@ -27,6 +33,9 @@ export const InputWrapper = ({
     $isError={isError}
     $isDisabled={isDisabled}
     $gap={6}
+    $cursor={cursor}
+    ref={ref}
+    className={className}
   >
     {children}
   </StyledInputWrapper>
