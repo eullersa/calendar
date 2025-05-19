@@ -5,6 +5,7 @@ import { fadeIn } from "./animations";
 export const StyledDropdown = styled.div`
   position: fixed;
   inset: 0;
+  z-index: 9999;
 `;
 
 export const StyledDropdownContent = styled.div`

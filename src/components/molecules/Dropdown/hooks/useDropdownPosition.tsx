@@ -6,14 +6,15 @@ import { calculatePositionCSS } from "../helpers/calculatePositionCSS";
 
 export const useDropdownPosition = (
   anchorElement: ElementPosition,
-  gap: number = 0
+  gap: number = 0,
+  isSearchable?: boolean
 ) => {
   const { height: viewportHeight, width: viewportWidth } = useWindowSize();
   const [ref, { height: dropdownHeight, width: dropdownWidth }] =
     useMeasure<HTMLDivElement>();
   const maxHeight = useMaxValue(dropdownHeight);
 
-  const positionStyle = calculatePositionCSS({
+  const style = calculatePositionCSS({
     anchorElement,
     dropdownHeight,
     dropdownWidth,
@@ -21,13 +22,20 @@ export const useDropdownPosition = (
     viewportWidth,
     maxHeight,
     gap,
+    isSearchable,
   });
 
-  const style: React.CSSProperties = {
-    ...positionStyle,
-  };
+  const { top: dropdownY } = style;
+  const { top: anchorY } = anchorElement;
 
-  const height = calculateHeight(maxHeight, viewportHeight);
+  const height = calculateHeight({
+    isSearchable,
+    maxHeight,
+    viewportHeight,
+    dropdownY,
+    anchorY,
+    gap,
+  });
 
   return {
     ref,

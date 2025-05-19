@@ -3,6 +3,7 @@ export enum VerticalPosition {
   BOTTOM = "bottom",
   CENTER = "center",
   TOP_BOTTOM = "top-bottom",
+  TOP_SEARCHABLE = "top-searchable",
 }
 
 export enum HorizontalPosition {

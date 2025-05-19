@@ -16,6 +16,7 @@ export type DropdownProps = {
   anchorPosition: ElementPosition;
   children?: (maxHeight: number | string) => React.ReactNode;
   gap?: number;
+  isSearchable?: boolean;
 };
 
 const DropdownComponent = ({
@@ -24,8 +25,13 @@ const DropdownComponent = ({
   maxWidth = undefined,
   gap = DROPDOWN_GAP,
   children,
+  isSearchable,
 }: DropdownProps) => {
-  const { ref, style, height } = useDropdownPosition(anchorPosition, gap);
+  const { ref, style, height } = useDropdownPosition(
+    anchorPosition,
+    gap,
+    isSearchable
+  );
 
   const modalRoot = document.getElementById(DROPDOWN_ROOT_ID);
   if (!modalRoot) {

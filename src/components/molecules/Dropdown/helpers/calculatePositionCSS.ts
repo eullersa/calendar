@@ -10,6 +10,7 @@ type CalculatePositionCSSParameters = {
   viewportWidth: number;
   maxHeight: number;
   gap: number;
+  isSearchable?: boolean;
 };
 
 export const calculatePositionCSS = ({
@@ -20,13 +21,15 @@ export const calculatePositionCSS = ({
   viewportWidth,
   maxHeight,
   gap = 0,
-}: CalculatePositionCSSParameters): React.CSSProperties => {
+  isSearchable = false,
+}: CalculatePositionCSSParameters) => {
   const vertical = calculateVerticalPosition(
     anchorElement,
     dropdownHeight,
     viewportHeight,
     maxHeight,
-    gap
+    gap,
+    isSearchable
   );
 
   const horizontal = calculateHorizontalPosition(
@@ -38,5 +41,5 @@ export const calculatePositionCSS = ({
   return {
     ...vertical.style,
     ...horizontal.style,
-  };
+  } as const;
 };

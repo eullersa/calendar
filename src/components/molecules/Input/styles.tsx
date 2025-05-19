@@ -1,26 +1,42 @@
 import { componentsCSS, fontSizeCSS, fontWeightCSS } from "@/theme";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 type StyledInputProps = {
   $isDisabled?: boolean;
+  $removePointerEvents?: boolean;
+  $filledPlaceholder?: boolean;
 };
 
-export const StyledInput = styled.input<StyledInputProps>`
+const defaultFont = ($isDisabled: StyledInputProps["$isDisabled"]) => css`
   font-size: ${fontSizeCSS("lg")};
   font-weight: ${fontWeightCSS("medium")};
-  color: ${({ $isDisabled }) =>
-    $isDisabled
-      ? componentsCSS("Input.color.text.disabled")
-      : componentsCSS("Input.color.text.default")};
+  color: ${$isDisabled
+    ? componentsCSS("Input.color.text.disabled")
+    : componentsCSS("Input.color.text.default")};
+`;
+
+export const StyledInput = styled.input<StyledInputProps>`
+  ${({ $isDisabled }) => defaultFont($isDisabled)}
   background-color: transparent;
   width: 100%;
   outline: none;
   border: none;
+  ${({ $removePointerEvents }) =>
+    $removePointerEvents &&
+    css`
+      pointer-events: none;
+      user-select: none;
+    `}
   cursor: ${({ $isDisabled }) => ($isDisabled ? "not-allowed" : "text")};
   &::placeholder {
-    color: ${componentsCSS("Input.color.text.disabled")};
-    font-weight: ${fontWeightCSS("regular")};
-    font-size: ${fontSizeCSS("lg")};
+    ${({ $filledPlaceholder, $isDisabled }) =>
+      $filledPlaceholder
+        ? defaultFont($isDisabled)
+        : css`
+            color: ${componentsCSS("Input.color.text.disabled")};
+            font-weight: ${fontWeightCSS("regular")};
+            font-size: ${fontSizeCSS("lg")};
+          `}
   }
 
   &:-webkit-autofill,

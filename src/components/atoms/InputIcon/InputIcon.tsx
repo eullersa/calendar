@@ -4,6 +4,7 @@ import { StyledInputIconButton } from "./styles";
 
 type InputIconProps = {
   icon?: React.ReactNode;
+  size?: number;
   isActive?: boolean;
   isError?: boolean;
   isDisabled?: boolean;
@@ -16,14 +17,19 @@ export const InputIcon = ({
   isActive = false,
   isDisabled,
   onClickIcon,
+  size = 18,
 }: InputIconProps) => {
   if (!icon) return null;
 
   return (
-    <StyledInputIconButton $isDisabled={isDisabled} onClick={onClickIcon}>
+    <StyledInputIconButton
+      $isDisabled={isDisabled}
+      onClick={onClickIcon}
+      tabIndex={-1}
+    >
       <IconContext.Provider
         value={{
-          size: "25px",
+          size: `${size}px`,
           color: isError
             ? componentsCSS("Input.color.icon.error")
             : isDisabled

@@ -18,4 +18,6 @@ export const StyledInputIconButton = styled.button<StyledInputIconButtonProps>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
+  flex-grow: 0;
 `;

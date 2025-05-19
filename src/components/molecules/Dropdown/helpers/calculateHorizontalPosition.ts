@@ -5,10 +5,7 @@ export const calculateHorizontalPosition = (
   anchorElement: ElementPosition,
   dropdownWidth: number,
   viewportWidth: number
-): {
-  style: React.CSSProperties;
-  position: HorizontalPosition;
-} => {
+) => {
   // First try to center the dropdown relative to the anchor
   const idealCenterPosition =
     anchorElement.left + anchorElement.width / 2 - dropdownWidth / 2;
