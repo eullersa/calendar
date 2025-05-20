@@ -48,6 +48,7 @@ export const StyledColumn = styled.div`
   position: relative;
   height: 100%;
   width: 100%;
+  color: red;
 `;
 
 export const StyledColumnOver = styled.div`

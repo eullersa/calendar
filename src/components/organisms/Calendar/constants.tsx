@@ -6,17 +6,20 @@ export const EVENTS: EventCard[] = [
   {
     day: 1,
     time: 1,
-    duration: 2,
+    duration: 1.67,
+    type: "event",
   },
   {
     day: 3,
     time: 2,
-    duration: 2.5,
+    duration: 1.67,
+    type: "event",
   },
   {
     day: 4,
     time: 1,
-    duration: 2,
+    duration: 1.67,
+    type: "event",
   },
 ];
 

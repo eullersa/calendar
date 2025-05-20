@@ -1,13 +1,9 @@
 "use client";
 
-import {
-  StyledRows,
-  StyledTableDataRows,
-  StyledTableRows,
-  StyledTableTimeRow,
-} from "./styles";
+import { StyledRows, StyledTableDataRows, StyledTableRows } from "./styles";
 import { TIME_SLOTS } from "./constants";
 import { ColgroupTime } from "./ColgroupTime";
+import { DroppableTime } from "./DroppableTime";
 
 type TimeRows = {
   handleCellPosition: (
@@ -22,7 +18,7 @@ export const TimeRows = ({ handleCellPosition, rowsRef }: TimeRows) => (
       <ColgroupTime />
       <tbody>
         {TIME_SLOTS.map((time) => (
-          <StyledTableTimeRow key={time}>
+          <DroppableTime id={`time-${time}`} data={{ time }} key={time}>
             <StyledTableDataRows data-time={time}>
               <div>
                 {time.replaceAll(":00:00", ":00").replaceAll(":30:00", ":30")}
@@ -32,7 +28,7 @@ export const TimeRows = ({ handleCellPosition, rowsRef }: TimeRows) => (
               data-time={time}
               onClick={handleCellPosition(time)}
             />
-          </StyledTableTimeRow>
+          </DroppableTime>
         ))}
       </tbody>
     </StyledTableRows>

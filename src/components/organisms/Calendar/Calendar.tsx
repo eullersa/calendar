@@ -8,14 +8,22 @@ import { TableMain } from "./TableMain";
 import { TimeRows } from "./TimeRows";
 import { WeekColumns } from "./WeekColumns";
 import { EventCard } from "./types";
+import { closestCenter, DndContext } from "@dnd-kit/core";
+import { restrictToWindowEdges, snapCenterToCursor } from "@dnd-kit/modifiers";
 
 type CalendarProps = { changeCalendar: (event: EventCard) => void };
 
 export const Calendar = ({ changeCalendar }: CalendarProps) => {
   const [isWeekDayInFront, setIsWeekDayInFront] = useState(false);
   const [events, setEvents] = useState<EventCard[]>([]);
+  const columnsRef = useRef<HTMLTableRowElement>(null);
   const rowsRef = useRef<HTMLDivElement>(null);
   const windowSize = useWindowSize();
+  const [eventOverlay, setEventOverlay] = useState<EventCard | null>(null);
+
+  const addNewEvent = (eventData: EventCard) => {
+    setEvents((prev) => [...prev, eventData]);
+  };
 
   const handleCellPosition =
     (time: string) => (e: React.MouseEvent<HTMLTableCellElement>) => {
@@ -31,8 +39,9 @@ export const Calendar = ({ changeCalendar }: CalendarProps) => {
         day: dataWeekIndex,
         time: dataTimeIndex,
         duration: 2,
-      };
-      setEvents((prev) => [...prev, newEvent]);
+        type: "event",
+      } as const;
+      addNewEvent(newEvent);
       setIsWeekDayInFront(false);
       changeCalendar(newEvent);
     };
@@ -40,18 +49,18 @@ export const Calendar = ({ changeCalendar }: CalendarProps) => {
   const getRowHeight = (rowIndex: number) =>
     rowsRef.current?.children[0].children[1].children[
       rowIndex
-    ].getBoundingClientRect().height ?? 0;
-
-  const rowHeight = getRowHeight(1);
+    ]?.getBoundingClientRect().height ?? 0;
 
   const getEventInset = useCallback(
     (rowIndex: number, duration: number) => {
+      const rowHeight = getRowHeight(rowIndex);
+
       return `${(rowHeight * rowIndex).toFixed(2)}px 0% -${(
         rowHeight * rowIndex +
         rowHeight * duration
       ).toFixed(2)}px`;
     },
-    [windowSize, rowHeight]
+    [windowSize]
   );
 
   const deleteEvent = (day: number, time: number) => {
@@ -73,15 +82,48 @@ export const Calendar = ({ changeCalendar }: CalendarProps) => {
       >
         Reset
       </button>
-      <TableMain>
-        <TimeRows handleCellPosition={handleCellPosition} rowsRef={rowsRef} />
-        <WeekColumns
-          deleteEvent={deleteEvent}
-          getEventInset={getEventInset}
-          isWeekDayInFront={isWeekDayInFront}
-          events={events}
-        />
-      </TableMain>
+      <DndContext
+        collisionDetection={closestCenter}
+        onDragStart={() => {
+          setIsWeekDayInFront(true);
+        }}
+        modifiers={[restrictToWindowEdges, snapCenterToCursor]}
+        onDragMove={(event) => {
+          const duration = event?.active?.data?.current?.duration ?? 2;
+
+          const week = event.collisions?.filter((droppable) =>
+            droppable?.id?.toString().includes("week-")
+          )?.[0]?.data?.droppableContainer?.data?.current?.week;
+
+          const time = event.collisions?.filter((droppable) =>
+            droppable?.id?.toString().includes("time-")
+          )?.[0]?.data?.droppableContainer?.data?.current?.time;
+
+          const eventOverlay = {
+            day: WEEK_DAYS.indexOf(week),
+            time: TIME_SLOTS.indexOf(time),
+            duration: Number(duration),
+            type: "overlay",
+          } as const;
+
+          setEventOverlay(eventOverlay);
+        }}
+        onDragEnd={() => {
+          setEventOverlay(null);
+          setIsWeekDayInFront(false);
+        }}
+      >
+        <TableMain>
+          <TimeRows handleCellPosition={handleCellPosition} rowsRef={rowsRef} />
+          <WeekColumns
+            deleteEvent={deleteEvent}
+            getEventInset={getEventInset}
+            isWeekDayInFront={isWeekDayInFront}
+            events={[...events, ...(!!eventOverlay ? [eventOverlay] : [])]}
+            columnsRef={columnsRef}
+          />
+        </TableMain>
+      </DndContext>
     </>
   );
 };
