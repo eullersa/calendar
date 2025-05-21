@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { BORDER_COLOR } from "./constants";
 
 export const StyledTableMain = styled.table`
@@ -59,15 +59,15 @@ export const StyledColumnOver = styled.div`
 `;
 
 type StyledColumnCard = {
-  $inset: string;
+  $cellPosition: string;
 };
 
-export const StyledColumnCard = styled.div<StyledColumnCard>`
+export const StyledCard = styled.div<StyledColumnCard>`
   cursor: pointer;
   position: absolute;
   background-color: #0ed90037;
   z-index: 3;
-  inset: ${({ $inset }) => $inset};
+  inset: ${({ $cellPosition }) => $cellPosition};
 `;
 
 export const StyledTableCols = styled(StyledTableRows)``;
@@ -78,16 +78,7 @@ export const StyledRows = styled.div`
   z-index: 1;
 `;
 
-type StyledColumns = {
-  $isWeekDayInFront: boolean;
-};
-
-export const StyledColumns = styled.div<StyledColumns>`
+export const StyledColumns = styled.div`
   position: absolute;
   inset: 0;
-  ${({ $isWeekDayInFront }) =>
-    $isWeekDayInFront &&
-    css`
-      z-index: 2;
-    `};
 `;

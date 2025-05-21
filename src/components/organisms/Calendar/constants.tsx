@@ -1,25 +1,25 @@
-import { EventCard } from "./types";
+import { EventTimeSlot, EventType } from "./types";
 
 export const BORDER_COLOR = "#8b8b8b67";
 
-export const EVENTS: EventCard[] = [
+export const EVENTS: EventTimeSlot[] = [
   {
-    day: 1,
+    weekDay: 1,
     time: 1,
     duration: 1.67,
-    type: "event",
+    type: EventType.EVENT,
   },
   {
-    day: 3,
-    time: 2,
+    weekDay: 3,
+    time: 5,
     duration: 1.67,
-    type: "event",
+    type: EventType.EVENT,
   },
   {
-    day: 4,
+    weekDay: 4,
     time: 1,
     duration: 1.67,
-    type: "event",
+    type: EventType.EVENT,
   },
 ];
 
@@ -31,7 +31,7 @@ export const WEEK_DAYS = [
   "thursday",
   "friday",
   "saturday",
-];
+] as const;
 
 export const TIME_SLOTS = [
   "00:00:00",

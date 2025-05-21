@@ -1,7 +1,5 @@
-export const ColgroupTime = () => {
-  return (
-    <colgroup>
-      <col style={{ width: 60 }} />
-    </colgroup>
-  );
-};
+export const ColgroupTime = () => (
+  <colgroup>
+    <col style={{ width: 60 }} />
+  </colgroup>
+);

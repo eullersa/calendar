@@ -5,10 +5,10 @@ import { Select } from "@/components/molecules/Select";
 import { Calendar } from "@/components/organisms/Calendar/Calendar";
 import { SwitchLocaleLanguage } from "@/features/i18n";
 import { SwitchThemeMode } from "@/features/theme";
+import { useConfirm } from "@/hooks/useConfirm";
 import { Modal } from "@/ui/feedback/Modal";
 import { Flex } from "@/ui/primitives/Flex/Flex";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
 import { BsClockFill } from "react-icons/bs";
 import { FaCalendar, FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -16,15 +16,15 @@ import { PiHourglassSimpleFill } from "react-icons/pi";
 import { TbTimezone } from "react-icons/tb";
 
 export default function Home() {
-  const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations("Calendar");
+  const { confirm, open, handleClose } = useConfirm();
 
   return (
     <div>
       <Modal
         title={t("title")}
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
+        isOpen={open}
+        onClose={() => handleClose(false)}
       >
         <Flex $fullWidth $gap={10} $vertical>
           <TextField
@@ -150,8 +150,8 @@ export default function Home() {
         {t("title")}
       </div>
       <Calendar
-        changeCalendar={() => {
-          setIsOpen((prev) => !prev);
+        changeCalendar={async () => {
+          return await confirm();
         }}
       />
     </div>
