@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { EventTimeSlot, EventType } from "../types";
+import { EventStatus, EventTimeSlot } from "../types";
 import { EVENTS } from "../constants";
 import { getCellFromPoint } from "../helpers/getCellFromPoint";
 import { standartEvent } from "../helpers/standartEvent";
@@ -17,6 +17,7 @@ export const useEvents = ({ changeCalendar }: UseEventsProps) => {
   );
   const eventDragging: EventTimeSlot[] = eventDraggable ? [eventDraggable] : [];
   const allEvents: EventTimeSlot[] = [...events, ...eventDragging];
+  const isDragging = !!eventDraggable;
 
   const addEvent = async (e: React.MouseEvent<HTMLTableCellElement>) => {
     const eventsBefore = events;
@@ -35,11 +36,41 @@ export const useEvents = ({ changeCalendar }: UseEventsProps) => {
       setEventDraggable(null);
       return;
     }
-    setEventDraggable({ ...event, type: EventType.DRAGGING });
+    setEventDraggable({ ...event, status: EventStatus.DRAGGING });
+  };
+
+  const markEventAsPending = (event: EventTimeSlot) => {
+    setEvents((prev) =>
+      prev.map((e) =>
+        e.weekDay === event.weekDay && e.time === event.time
+          ? { ...e, status: EventStatus.PENDING }
+          : e
+      )
+    );
+  };
+
+  const markEventAsConfirmed = (event: EventTimeSlot) => {
+    setEvents((prev) =>
+      prev.map((e) =>
+        e.weekDay === event.weekDay && e.time === event.time
+          ? { ...e, status: EventStatus.CONFIRMED }
+          : e
+      )
+    );
+  };
+
+  const updateEventPosition = (event: EventTimeSlot) => {
+    setEvents((prev) =>
+      prev.map((e) =>
+        e.weekDay === event.weekDay && e.time === event.time && eventDraggable
+          ? { ...eventDraggable, status: EventStatus.CONFIRMED }
+          : e
+      )
+    );
   };
 
   const resetEvents = () => {
-    setEvents([]);
+    setEvents(EVENTS);
   };
 
   useEffect(() => {
@@ -52,5 +83,9 @@ export const useEvents = ({ changeCalendar }: UseEventsProps) => {
     addEvent,
     resetEvents,
     updateEventDragging,
+    isDragging,
+    markEventAsPending,
+    markEventAsConfirmed,
+    updateEventPosition,
   };
 };

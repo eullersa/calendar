@@ -143,6 +143,14 @@ export default function Home() {
             ]}
           />
         </Flex>
+        <button
+          onClick={() => handleClose(true)}
+          style={{
+            width: "100%",
+          }}
+        >
+          Confirm
+        </button>
       </Modal>
       <div>
         <SwitchThemeMode />

@@ -1,5 +1,11 @@
 import styled from "styled-components";
 import { BORDER_COLOR } from "./constants";
+import { EventType } from "./types";
+
+export const StyledCalendar = styled.div`
+  height: 600px;
+  overflow-y: scroll;
+`;
 
 export const StyledTableMain = styled.table`
   width: 100%;
@@ -60,12 +66,15 @@ export const StyledColumnOver = styled.div`
 
 type StyledColumnCard = {
   $cellPosition: string;
+  $cellType?: EventType;
 };
 
 export const StyledCard = styled.div<StyledColumnCard>`
-  cursor: pointer;
+  cursor: ${({ $cellType }) =>
+    $cellType === EventType.BLOCK ? "not-allowed" : "pointer"};
   position: absolute;
-  background-color: #0ed90037;
+  background-color: ${({ $cellType }) =>
+    $cellType === EventType.BLOCK ? "#d9190037" : "#0ed90037"};
   z-index: 3;
   inset: ${({ $cellPosition }) => $cellPosition};
 `;

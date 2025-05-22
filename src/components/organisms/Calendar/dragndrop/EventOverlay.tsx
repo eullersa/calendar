@@ -2,20 +2,22 @@
 
 import { StyledCard } from "../styles";
 import { DragOverlay } from "@dnd-kit/core";
-import styled from "styled-components";
 import { GetCellPosition, GetVerticalCellPosition } from "../types";
 import { useActiveEvent } from "../hooks/useActiveEvent";
 import { useCellKeyframes } from "../hooks/useCellKeyframes";
+import { CSSProperties } from "react";
 
-const StyledDragOverlay = styled(DragOverlay)`
-  top: 0 !important;
-  opacity: 0;
-  height: auto !important;
-  position: absolute !important;
-  pointer-events: none;
-`;
+const style: CSSProperties = {
+  top: 0,
+  opacity: 0,
+  height: "auto",
+  position: "absolute",
+  pointerEvents: "none",
+  backgroundColor: "red",
+};
 
 type EventOverlayProps = {
+  isDragging: boolean;
   getCellPosition: GetCellPosition;
   getVerticalCellPosition: GetVerticalCellPosition;
 };
@@ -23,21 +25,30 @@ type EventOverlayProps = {
 export const EventOverlay = ({
   getVerticalCellPosition,
   getCellPosition,
+  isDragging,
 }: EventOverlayProps) => {
   const activeEvent = useActiveEvent();
   const keyframes = useCellKeyframes(getCellPosition);
   const cellPosition = getVerticalCellPosition(activeEvent);
 
   return (
-    <StyledDragOverlay
+    <DragOverlay
       adjustScale={true}
-      dropAnimation={{
-        keyframes,
-        duration: 550,
-        easing: "linear",
+      style={{
+        ...style,
+        opacity: isDragging ? 0 : 1,
       }}
+      dropAnimation={
+        isDragging
+          ? null
+          : {
+              keyframes,
+              duration: 550,
+              easing: "linear",
+            }
+      }
     >
       {activeEvent && <StyledCard $cellPosition={cellPosition} />}
-    </StyledDragOverlay>
+    </DragOverlay>
   );
 };

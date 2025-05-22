@@ -1,8 +1,16 @@
 import { TIME_SLOTS, WEEK_DAYS } from "../constants";
-import { TimeSlotData, TimeSlot } from "../types";
+import { TimeSlotData, TimeSlot, EventType } from "../types";
 
 export const getCellFromPoint = (x: number, y: number): TimeSlot | null => {
   const elements = Array.from(document.elementsFromPoint(x, y));
+
+  const isBlockCell =
+    elements
+      .find((el) => el.hasAttribute(TimeSlotData.TYPE))
+      ?.getAttribute(TimeSlotData.TYPE) === EventType.BLOCK;
+
+  if (isBlockCell) return null;
+
   const weekDayValue = elements
     .find((el) => el.hasAttribute(TimeSlotData.WEEKDAY))
     ?.getAttribute(TimeSlotData.WEEKDAY);

@@ -13,13 +13,21 @@ export const usePointer = (isEnabled: boolean = true) => {
     setPointer({ x: e.clientX, y: e.clientY });
   };
 
-  useEffect(() => {
-    if (!isEnabled) return;
+  const resetPointer = () => {
+    setPointer({ x: 0, y: 0 });
+  };
 
-    document.addEventListener("mousemove", handleMouseMove);
-    return () => {
+  useEffect(() => {
+    if (isEnabled) {
+      document.addEventListener("mousemove", handleMouseMove);
+      return () => {
+        document.removeEventListener("mousemove", handleMouseMove);
+        resetPointer();
+      };
+    } else {
       document.removeEventListener("mousemove", handleMouseMove);
-    };
+      resetPointer();
+    }
   }, [isEnabled]);
 
   return pointer;

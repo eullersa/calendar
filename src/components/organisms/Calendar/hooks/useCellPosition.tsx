@@ -20,8 +20,10 @@ export const useCellPosition = () => {
   };
 
   const getCellHeight = (rowIndex: number) => {
+    const time = Math.floor(rowIndex);
+
     const dataTimeElement = ref.current?.querySelector(
-      `[${TimeSlotData.TIME}='${TIME_SLOTS[rowIndex]}']`
+      `[${TimeSlotData.TIME}='${TIME_SLOTS[time]}']`
     );
 
     const rowHeight = dataTimeElement?.getBoundingClientRect().height ?? 0;

@@ -1,4 +1,4 @@
-import { EventTimeSlot, EventType } from "./types";
+import { EventStatus, EventTimeSlot, EventType } from "./types";
 
 export const BORDER_COLOR = "#8b8b8b67";
 
@@ -8,18 +8,35 @@ export const EVENTS: EventTimeSlot[] = [
     time: 1,
     duration: 1.67,
     type: EventType.EVENT,
+    status: EventStatus.CONFIRMED,
   },
   {
-    weekDay: 3,
-    time: 5,
+    weekDay: 2,
+    time: 20,
     duration: 1.67,
     type: EventType.EVENT,
+    status: EventStatus.CONFIRMED,
+  },
+  {
+    weekDay: 2,
+    time: 5.5,
+    duration: 1.67,
+    type: EventType.EVENT,
+    status: EventStatus.CONFIRMED,
   },
   {
     weekDay: 4,
     time: 1,
-    duration: 1.67,
-    type: EventType.EVENT,
+    duration: 5,
+    type: EventType.BLOCK,
+    status: EventStatus.CONFIRMED,
+  },
+  {
+    weekDay: 5,
+    time: 3,
+    duration: 7,
+    type: EventType.BLOCK,
+    status: EventStatus.CONFIRMED,
   },
 ];
 
@@ -81,6 +98,4 @@ export const TIME_SLOTS = [
   "22:30:00",
   "23:00:00",
   "23:30:00",
-  "24:00:00",
-  "24:30:00",
 ];

@@ -7,7 +7,7 @@ import {
   StyledTableTimeRow,
 } from "../styles";
 import { TIME_SLOTS } from "../constants";
-import { ColgroupTime } from "../ColgroupTime";
+import { ColgroupTime } from "../components/ColgroupTime";
 import { AddEvent, TimeSlotData } from "../types";
 
 type TableTimeRows = {

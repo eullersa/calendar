@@ -8,11 +8,17 @@ import {
   StyledTableDataColumns,
 } from "../styles";
 import { WEEK_DAYS } from "../constants";
-import { ColgroupTime } from "../ColgroupTime";
-import { TimeSlotData, EventTimeSlot, GetVerticalCellPosition } from "../types";
+import { ColgroupTime } from "../components/ColgroupTime";
+import {
+  TimeSlotData,
+  EventTimeSlot,
+  GetVerticalCellPosition,
+  ChangeCalendar,
+} from "../types";
 import { EventsColumn } from "../events/EventsColumn";
 
 type TableWeedayColumnsProps = {
+  changeCalendar: ChangeCalendar;
   getVerticalCellPosition: GetVerticalCellPosition;
   events: EventTimeSlot[];
 };
@@ -20,6 +26,7 @@ type TableWeedayColumnsProps = {
 export const TableWeedayColumns = ({
   getVerticalCellPosition,
   events,
+  changeCalendar,
 }: TableWeedayColumnsProps) => (
   <StyledColumns>
     <StyledTableCols>
@@ -34,6 +41,7 @@ export const TableWeedayColumns = ({
                 key={weekday}
               >
                 <EventsColumn
+                  changeCalendar={changeCalendar}
                   getVerticalCellPosition={getVerticalCellPosition}
                   events={events}
                   week={weekday}

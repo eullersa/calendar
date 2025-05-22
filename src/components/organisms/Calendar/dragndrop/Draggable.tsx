@@ -12,16 +12,10 @@ type ChildrenProps = {
 type DraggableProps = {
   id: string;
   data: Record<string, number | string>;
-  isDragging: boolean;
   children: (props: ChildrenProps) => React.ReactNode;
 };
 
-export const Draggable = ({
-  id,
-  data,
-  isDragging,
-  children,
-}: DraggableProps) => {
+export const Draggable = ({ id, data, children }: DraggableProps) => {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id,
     data,
@@ -30,7 +24,7 @@ export const Draggable = ({
   const style: CSSProperties | undefined = transform
     ? {
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-        opacity: isDragging ? "0" : "1",
+        opacity: 0,
       }
     : undefined;
 
