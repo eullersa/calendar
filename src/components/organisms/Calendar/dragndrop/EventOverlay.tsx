@@ -2,10 +2,11 @@
 
 import { StyledCard } from "../styles";
 import { DragOverlay } from "@dnd-kit/core";
-import { GetCellPosition, GetVerticalCellPosition } from "../types";
+import { GetVerticalCellPosition } from "../types";
 import { useActiveEvent } from "../hooks/useActiveEvent";
-import { useCellKeyframes } from "../hooks/useCellKeyframes";
 import { CSSProperties } from "react";
+import { createPortal } from "react-dom";
+import { keyframes } from "../helpers/keyframes";
 
 const style: CSSProperties = {
   top: 0,
@@ -18,20 +19,17 @@ const style: CSSProperties = {
 
 type EventOverlayProps = {
   isDragging: boolean;
-  getCellPosition: GetCellPosition;
   getVerticalCellPosition: GetVerticalCellPosition;
 };
 
-export const EventOverlay = ({
+const EventOverlay = ({
   getVerticalCellPosition,
-  getCellPosition,
   isDragging,
 }: EventOverlayProps) => {
   const activeEvent = useActiveEvent();
-  const keyframes = useCellKeyframes(getCellPosition);
   const cellPosition = getVerticalCellPosition(activeEvent);
 
-  return (
+  return createPortal(
     <DragOverlay
       adjustScale={true}
       style={{
@@ -43,12 +41,14 @@ export const EventOverlay = ({
           ? null
           : {
               keyframes,
-              duration: 550,
               easing: "linear",
             }
       }
     >
       {activeEvent && <StyledCard $cellPosition={cellPosition} />}
-    </DragOverlay>
+    </DragOverlay>,
+    document.body
   );
 };
+
+export default EventOverlay;

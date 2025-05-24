@@ -1,4 +1,11 @@
-export const getScrollPosition = (scrollNode?: HTMLElement | null) => {
+export const getScrollPosition = (scrollNode?: HTMLElement | Window | null) => {
+  if (scrollNode instanceof Window) {
+    return {
+      x: scrollNode.scrollX,
+      y: scrollNode.scrollY,
+    };
+  }
+
   if (!scrollNode)
     return {
       x: 0,

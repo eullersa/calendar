@@ -7,14 +7,17 @@ import { ChangeCalendar } from "./types";
 import { DndCalendar } from "./dragndrop/DndCalendar";
 import { useCellPosition } from "./hooks/useCellPosition";
 import { useEvents } from "./hooks/useEvents";
-import { EventOverlay } from "./dragndrop/EventOverlay";
+import dynamic from "next/dynamic";
+const EventOverlay = dynamic(() => import("./dragndrop/EventOverlay"), {
+  ssr: false,
+});
 
 type CalendarProps = {
   changeCalendar: ChangeCalendar;
 };
 
 export const Calendar = ({ changeCalendar }: CalendarProps) => {
-  const { ref, getVerticalCellPosition, getCellPosition } = useCellPosition();
+  const { ref, getVerticalCellPosition } = useCellPosition();
   const {
     isDragging,
     events,
@@ -42,7 +45,6 @@ export const Calendar = ({ changeCalendar }: CalendarProps) => {
       >
         <TableMain ref={ref}>
           <EventOverlay
-            getCellPosition={getCellPosition}
             getVerticalCellPosition={getVerticalCellPosition}
             isDragging={isDragging}
           />

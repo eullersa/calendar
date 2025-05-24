@@ -38,6 +38,13 @@ export const EVENTS: EventTimeSlot[] = [
     type: EventType.BLOCK,
     status: EventStatus.CONFIRMED,
   },
+  {
+    weekDay: 4,
+    time: 20,
+    duration: 7,
+    type: EventType.BLOCK,
+    status: EventStatus.CONFIRMED,
+  },
 ];
 
 export const WEEK_DAYS = [

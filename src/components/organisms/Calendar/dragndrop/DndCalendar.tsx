@@ -9,10 +9,7 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import {
-  restrictToFirstScrollableAncestor,
-  snapCenterToCursor,
-} from "@dnd-kit/modifiers";
+import { restrictToWindowEdges, snapCenterToCursor } from "@dnd-kit/modifiers";
 import {
   EventTimeSlot,
   MarkEventAsConfirmed,
@@ -25,7 +22,7 @@ import { updateEventTime } from "../helpers/updateEventTime";
 import { usePointer } from "@/hooks/usePointer";
 import { useEffect, useState } from "react";
 import { StyledCalendar } from "../styles";
-import { useCompensateScroll } from "../hooks/useCompensateScroll";
+import { compensateScroll } from "../helpers/compensateScroll";
 
 type CalendarProps = {
   children: React.ReactNode;
@@ -48,7 +45,6 @@ export const DndCalendar = ({
 }: CalendarProps) => {
   const [isDragging, setIsDragging] = useState(false);
   const mouse = usePointer(isDragging);
-  const { compensateScroll, scrollRef } = useCompensateScroll();
 
   const handleDrag = (event: EventTimeSlot, x: number, y: number) => {
     const newTimeSlot = getCellFromPoint(x, y);
@@ -134,14 +130,10 @@ export const DndCalendar = ({
       onDragEnd={handleDragEnd}
       onDragAbort={handleDragCancel}
       onDragCancel={handleDragCancel}
-      modifiers={[
-        compensateScroll,
-        snapCenterToCursor,
-        restrictToFirstScrollableAncestor,
-      ]}
+      modifiers={[snapCenterToCursor, restrictToWindowEdges, compensateScroll]}
       sensors={sensors}
     >
-      <StyledCalendar ref={scrollRef}>{children}</StyledCalendar>
+      <StyledCalendar>{children}</StyledCalendar>
     </DndContext>
   );
 };
